@@ -4,10 +4,9 @@ neighborLSH
 
 :Version: 0.0.4dev
 
-A fast Python implementation of locality sensitive hashing with
-  - persistence support
-  - api to find approximate nearest neighbors
-  - api to search for approximately all neighbors within a range
+A fast Python implementation of locality sensitive hashing with support for
+  - persistence 
+  - finding approximate nearest neighbors
 
 Highlights
 ==========
