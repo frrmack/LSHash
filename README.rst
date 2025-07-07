@@ -4,7 +4,7 @@ LSHash
 
 :Version: 0.0.4dev
 
-A fast Python implementation of locality sensitive hashing with persistance
+A fast Python implementation of locality sensitive hashing with persistence
 support.
 
 Highlights
