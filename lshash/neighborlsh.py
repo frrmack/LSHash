@@ -1,7 +1,7 @@
-# lshash/lshash.py
-# Copyright 2012 Kay Zhu (a.k.a He Zhu) and contributors (see CONTRIBUTORS.txt)
+# neighborlsh/neighborlsh.py
+# Copyright 2013 Mehmet Irmak Sirer, 2012 Kay Zhu and contributors
 #
-# This module is part of lshash and is released under
+# This module is part of neighborlsh and is released under
 # the MIT License: http://www.opensource.org/licenses/mit-license.php
 
 import os
@@ -16,8 +16,8 @@ except ImportError:
     bitarray = None
 
 
-class LSHash(object):
-    """ LSHash implments locality sensitive hashing using random projection for
+class neighborLSH(object):
+    """ neighborLSH implements locality sensitive hashing using random projection for
     input vectors of dimension `input_dim`.
 
     Attributes:
@@ -137,7 +137,7 @@ class LSHash(object):
             raise
         except ValueError as e:
             print("""The input point needs to be of the same dimension as
-                  `input_dim` when initializing this LSHash instance""", e)
+                  `input_dim` when initializing this neighborLSH instance""", e)
             raise
         else:
             return "".join(['1' if i > 0 else '0' for i in projections])
@@ -235,24 +235,24 @@ class LSHash(object):
             for i, table in enumerate(self.hash_tables):
                 binary_hash = self._hash(self.uniform_planes[i], query_point)
                 for key in table.keys():
-                    distance = LSHash.hamming_dist(key, binary_hash)
+                    distance = neighborLSH.hamming_dist(key, binary_hash)
                     if distance < 2:
                         candidates.update(table.get_list(key))
 
-            d_func = LSHash.euclidean_dist_square
+            d_func = neighborLSH.euclidean_dist_square
 
         else:
 
             if distance_func == "euclidean":
-                d_func = LSHash.euclidean_dist_square
+                d_func = neighborLSH.euclidean_dist_square
             elif distance_func == "true_euclidean":
-                d_func = LSHash.euclidean_dist
+                d_func = neighborLSH.euclidean_dist
             elif distance_func == "centred_euclidean":
-                d_func = LSHash.euclidean_dist_centred
+                d_func = neighborLSH.euclidean_dist_centred
             elif distance_func == "cosine":
-                d_func = LSHash.cosine_dist
+                d_func = neighborLSH.cosine_dist
             elif distance_func == "l1norm":
-                d_func = LSHash.l1norm_dist
+                d_func = neighborLSH.l1norm_dist
             else:
                 raise ValueError("The distance function name is invalid.")
 
