@@ -1,11 +1,13 @@
 ======
-LSHash
+neighborLSH
 ======
 
 :Version: 0.0.4dev
 
-A fast Python implementation of locality sensitive hashing with persistence
-support.
+A fast Python implementation of locality sensitive hashing with 
+- persistence support
+- api to find approximate nearest neighbors
+- api to search for approximately all neighbors within a range
 
 Highlights
 ==========
@@ -17,7 +19,7 @@ Highlights
 
 Installation
 ============
-``LSHash`` depends on the following libraries:
+``neighborLSH`` depends on the following libraries:
 
 - numpy
 - redis (if persistency through Redis is needed)
@@ -27,7 +29,7 @@ To install:
 
 .. code-block:: bash
 
-    $ pip install lshash
+    $ pip install neighborlsh
 
 Quickstart
 ==========
@@ -35,9 +37,9 @@ To create 6-bit hashes for input data of 8 dimensions:
 
 .. code-block:: python
 
-    >>> from lshash import LSHash
+    >>> from neighborlsh import neighborLSH
 
-    >>> lsh = LSHash(6, 8)
+    >>> lsh = neighborLSH(hash_size=6, input_dim=8)
     >>> lsh.index([1,2,3,4,5,6,7,8])
     >>> lsh.index([2,3,4,5,6,7,8,9])
     >>> lsh.index([10,12,99,1,5,31,2,3])
@@ -49,11 +51,11 @@ To create 6-bit hashes for input data of 8 dimensions:
 Main Interface
 ==============
 
-- To initialize a ``LSHash`` instance:
+- To initialize a ``neighborLSH`` instance:
 
 .. code-block:: python
 
-    LSHash(hash_size, input_dim, num_of_hashtables=1, storage=None, matrices_filename=None, overwrite=False)
+    neighborLSH(hash_size, input_dim, num_of_hashtables=1, storage=None, matrices_filename=None, overwrite=False)
 
 parameters:
 
@@ -72,7 +74,7 @@ parameters:
 ``overwrite = False``:
     (optional) Whether to overwrite the matrices file if it already exist
 
-- To index a data point of a given ``LSHash`` instance, e.g., ``lsh``:
+- To index a data point of a given ``neighborLSH`` instance, e.g., ``lsh``:
 
 .. code-block:: python
 
@@ -85,7 +87,7 @@ parameters:
 ``extra_data = None``:
     (optional) Extra data to be added along with the input_point.
 
-- To query a data point against a given ``LSHash`` instance, e.g., ``lsh``:
+- To query a data point against a given ``neighborLSH`` instance, e.g., ``lsh``:
 
 .. code-block:: python
 
