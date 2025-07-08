@@ -2,7 +2,7 @@
 neighborLSH
 ======
 
-:Version: 0.0.4dev
+:Version: 0.0.8dev
 
 A fast Python implementation of locality sensitive hashing with support for
   - persistence 
